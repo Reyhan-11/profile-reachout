@@ -2,27 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Company Profile Design System - Modern Professional Theme */
+/* Modern Attractive Website Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 220 15% 15%;
+    --background: 0 0% 99%;
+    --foreground: 223 39% 12%;
     
-    /* Brand Colors */
-    --brand-primary: 210 100% 50%;
-    --brand-secondary: 45 100% 60%;
-    --brand-accent: 270 60% 55%;
+    /* Modern Brand Colors */
+    --brand-primary: 262 83% 58%;
+    --brand-secondary: 221 83% 53%;
+    --brand-accent: 142 71% 45%;
+    --brand-light: 262 100% 95%;
     
-    /* Professional Palette */
-    --navy: 220 30% 20%;
-    --navy-light: 220 25% 35%;
+    /* Rich Color Palette */
+    --navy: 223 39% 12%;
+    --navy-light: 220 25% 25%;
+    --slate: 215 25% 27%;
     --gray-50: 210 20% 98%;
     --gray-100: 210 15% 95%;
     --gray-200: 210 10% 90%;
     --gray-300: 210 8% 80%;
     --gray-600: 210 8% 45%;
     --gray-700: 210 10% 35%;
+    --gray-800: 210 12% 15%;
     
     /* Semantic Colors */
     --primary: var(--brand-primary);
@@ -31,8 +34,8 @@
     --secondary: var(--gray-100);
     --secondary-foreground: var(--navy);
     
-    --accent: var(--brand-secondary);
-    --accent-foreground: var(--navy);
+    --accent: var(--brand-accent);
+    --accent-foreground: 0 0% 100%;
     
     --muted: var(--gray-200);
     --muted-foreground: var(--gray-600);
@@ -50,15 +53,20 @@
     --input: var(--gray-200);
     --ring: var(--brand-primary);
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-accent)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--gray-50)), hsl(var(--background)));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.4));
+    /* Beautiful Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-primary)), hsl(var(--brand-secondary)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-light)), hsl(var(--background)));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.9), hsl(0 0% 100% / 0.6));
+    --gradient-cta: linear-gradient(135deg, hsl(var(--brand-accent)), hsl(var(--brand-primary)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--navy) / 0.95), hsl(var(--slate) / 0.85));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--gray-50)), hsl(var(--background)));
     
-    /* Shadows */
-    --shadow-card: 0 4px 20px hsl(var(--navy) / 0.08);
-    --shadow-form: 0 8px 32px hsl(var(--navy) / 0.12);
-    --shadow-button: 0 2px 8px hsl(var(--brand-primary) / 0.3);
+    /* Enhanced Shadows */
+    --shadow-card: 0 10px 40px hsl(var(--navy) / 0.12);
+    --shadow-form: 0 20px 60px hsl(var(--navy) / 0.15);
+    --shadow-button: 0 4px 20px hsl(var(--brand-primary) / 0.4);
+    --shadow-hover: 0 20px 80px hsl(var(--navy) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--brand-primary) / 0.3);
 
     --radius: 0.5rem;
 
@@ -129,6 +137,7 @@
 }
 
 @layer utilities {
+  /* Gradient Utilities */
   .gradient-primary {
     background: var(--gradient-primary);
   }
@@ -141,6 +150,19 @@
     background: var(--gradient-card);
   }
   
+  .gradient-cta {
+    background: var(--gradient-cta);
+  }
+  
+  .gradient-overlay {
+    background: var(--gradient-overlay);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  /* Shadow Utilities */
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
@@ -151,5 +173,67 @@
   
   .shadow-button {
     box-shadow: var(--shadow-button);
+  }
+  
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Animation Utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  
+  /* Hover Effects */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

@@ -138,9 +138,13 @@ const ContactForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-2xl shadow-form border-border">
-      <CardHeader>
-        <CardTitle className="text-2xl font-bold text-navy text-center">Message Us</CardTitle>
+    <Card className="w-full max-w-2xl shadow-form border-0 bg-gradient-card backdrop-blur-sm hover-lift">
+      <CardHeader className="text-center pb-6">
+        <div className="w-16 h-16 bg-gradient-cta rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <span className="text-2xl">✉️</span>
+        </div>
+        <CardTitle className="text-3xl font-bold text-navy">Message Us</CardTitle>
+        <p className="text-gray-600 mt-2">We'd love to hear from you. Send us a message!</p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -240,9 +244,19 @@ const ContactForm = () => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 shadow-button transition-all duration-200"
+            className="w-full gradient-cta hover-glow text-white font-semibold py-4 rounded-xl shadow-button transition-all duration-300 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? "Sending..." : "Submit"}
+            {isSubmitting ? (
+              <span className="flex items-center justify-center">
+                <span className="animate-spin mr-2">⏳</span>
+                Sending...
+              </span>
+            ) : (
+              <span className="flex items-center justify-center">
+                <span className="mr-2">🚀</span>
+                Send Message
+              </span>
+            )}
           </Button>
         </form>
       </CardContent>
