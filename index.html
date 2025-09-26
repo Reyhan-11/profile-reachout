@@ -18,90 +18,10 @@
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
     <link rel="canonical" href="https://lovable.dev/projects/b03b3f64-4b52-4517-b6ce-812966842376" />
-    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- Name Entry Gate Modal -->
-    <div id="nameGateModal" class="modal-overlay">
-      <div class="modal-content">
-        <div class="card name-gate-card">
-          <div class="card-content name-gate-content">
-            <div class="welcome-icon">
-              <div class="icon-container">
-                <span class="emoji">👋</span>
-              </div>
-              <h1 class="welcome-title">Welcome!</h1>
-              <p class="welcome-description">
-                Please enter your name to access our website. This will personalize your experience.
-              </p>
-            </div>
-            
-            <div class="form-group">
-              <input
-                type="text"
-                id="nameInput"
-                placeholder="Enter your full name"
-                maxlength="50"
-                class="input name-input"
-              />
-              <button id="enterWebsiteBtn" class="btn btn-primary btn-full" disabled>
-                Enter Website
-              </button>
-            </div>
-            
-            <p class="helper-text">
-              Your name will be remembered for future visits
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="loading-screen">
-      <div class="loading-content">Loading...</div>
-    </div>
-
-    <!-- Main App Container -->
-    <div id="app" class="app-container" style="display: none;">
-      <!-- Header -->
-      <header class="header">
-        <div class="container">
-          <div class="header-content">
-            <!-- Logo -->
-            <a href="#" class="logo" data-route="home">
-              <div class="logo-icon">😊</div>
-              <span class="logo-text">My Website</span>
-            </a>
-
-            <!-- Navigation -->
-            <nav class="nav">
-              <a href="#" class="nav-link active" data-route="home">Home</a>
-              <a href="#" class="nav-link" data-route="profile">Our Profile</a>
-              <a href="#" class="nav-link" data-route="portfolio">Portfolio</a>
-              <a href="#" class="nav-link" data-route="contact">Message Us</a>
-            </nav>
-
-            <!-- Mobile menu button -->
-            <button class="mobile-menu-btn">
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <!-- Page Content -->
-      <main id="pageContent">
-        <!-- Content will be dynamically loaded here -->
-      </main>
-
-      <!-- Toast Container -->
-      <div id="toastContainer" class="toast-container"></div>
-    </div>
-
-    <script src="app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
