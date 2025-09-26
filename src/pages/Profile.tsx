@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import bannerImage from "@/assets/company-banner.jpg";
 
 const Profile = () => {
   return (
@@ -8,7 +9,17 @@ const Profile = () => {
       
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-navy text-center mb-8">Our Profile</h1>
+          {/* Photo Banner */}
+          <div className="relative mb-12 rounded-lg overflow-hidden shadow-card">
+            <img 
+              src={bannerImage} 
+              alt="Company headquarters building" 
+              className="w-full h-64 md:h-80 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end">
+              <h1 className="text-4xl md:text-6xl font-bold text-white p-8">Our Profile</h1>
+            </div>
+          </div>
           
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="shadow-card">

@@ -2,9 +2,19 @@ import Header from "@/components/Header";
 import ContactForm from "@/components/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Index = () => {
+  const [displayName, setDisplayName] = useState("Guest");
+  const [nameInput, setNameInput] = useState("");
+
+  const handleNameSubmit = () => {
+    if (nameInput.trim()) {
+      setDisplayName(nameInput.trim());
+    }
+  };
   const currentTime = new Date().toLocaleString('en-US', {
     weekday: 'short',
     year: 'numeric',
@@ -28,11 +38,32 @@ const Index = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-bold text-navy mb-6 leading-tight">
-              Hi Harfi, Welcome To
+              Hi {displayName}, Welcome To
               <span className="block text-transparent bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text">
                 Our Website
               </span>
             </h1>
+            
+            {/* Name Input Section */}
+            <div className="max-w-md mx-auto mb-8 bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="space-y-4">
+                <Input
+                  type="text"
+                  placeholder="Enter your name"
+                  value={nameInput}
+                  onChange={(e) => setNameInput(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleNameSubmit()}
+                  className="bg-white/20 border-white/30 text-navy placeholder:text-gray-500 h-12 text-center font-medium"
+                />
+                <Button 
+                  onClick={handleNameSubmit}
+                  className="w-full bg-brand-primary hover:bg-brand-primary/90 h-12 font-semibold rounded-xl"
+                >
+                  Update Welcome Message
+                </Button>
+              </div>
+            </div>
+            
             <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               Discover innovation and excellence through our professional services and creative solutions
             </p>
