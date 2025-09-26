@@ -4,17 +4,92 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Index = () => {
-  const [displayName, setDisplayName] = useState("Guest");
+  const [displayName, setDisplayName] = useState("");
   const [nameInput, setNameInput] = useState("");
+  const [hasEnteredName, setHasEnteredName] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check if user has already entered their name
+    const storedName = localStorage.getItem("userWelcomeName");
+    if (storedName) {
+      setDisplayName(storedName);
+      setHasEnteredName(true);
+    }
+    setIsLoading(false);
+  }, []);
 
   const handleNameSubmit = () => {
     if (nameInput.trim()) {
-      setDisplayName(nameInput.trim());
+      const trimmedName = nameInput.trim();
+      setDisplayName(trimmedName);
+      setHasEnteredName(true);
+      localStorage.setItem("userWelcomeName", trimmedName);
     }
   };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-pulse text-2xl text-gray-600">Loading...</div>
+      </div>
+    );
+  }
+
+  // Name entry gate - show only if user hasn't entered name yet
+  if (!hasEnteredName) {
+    return (
+      <div className="min-h-screen bg-background">
+        <div className="absolute inset-0 gradient-hero"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-accent/5"></div>
+        
+        <div className="min-h-screen flex items-center justify-center relative z-10">
+          <div className="max-w-md w-full mx-4">
+            <Card className="shadow-card border-0 bg-white/95 backdrop-blur-sm">
+              <CardContent className="p-8 text-center">
+                <div className="mb-8">
+                  <div className="w-20 h-20 bg-gradient-to-br from-brand-primary to-brand-accent rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">👋</span>
+                  </div>
+                  <h1 className="text-3xl font-bold text-navy mb-4">Welcome!</h1>
+                  <p className="text-gray-600 mb-6">
+                    Please enter your name to access our website. This will personalize your experience.
+                  </p>
+                </div>
+                
+                <div className="space-y-4">
+                  <Input
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={nameInput}
+                    onChange={(e) => setNameInput(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && handleNameSubmit()}
+                    className="h-12 text-center font-medium"
+                    maxLength={50}
+                  />
+                  <Button 
+                    onClick={handleNameSubmit}
+                    disabled={!nameInput.trim()}
+                    className="w-full bg-brand-primary hover:bg-brand-primary/90 h-12 font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Enter Website
+                  </Button>
+                </div>
+                
+                <p className="text-sm text-gray-500 mt-6">
+                  Your name will be remembered for future visits
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
   const currentTime = new Date().toLocaleString('en-US', {
     weekday: 'short',
     year: 'numeric',
@@ -43,26 +118,6 @@ const Index = () => {
                 Our Website
               </span>
             </h1>
-            
-            {/* Name Input Section */}
-            <div className="max-w-md mx-auto mb-8 bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <div className="space-y-4">
-                <Input
-                  type="text"
-                  placeholder="Enter your name"
-                  value={nameInput}
-                  onChange={(e) => setNameInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleNameSubmit()}
-                  className="bg-white/20 border-white/30 text-navy placeholder:text-gray-500 h-12 text-center font-medium"
-                />
-                <Button 
-                  onClick={handleNameSubmit}
-                  className="w-full bg-brand-primary hover:bg-brand-primary/90 h-12 font-semibold rounded-xl"
-                >
-                  Update Welcome Message
-                </Button>
-              </div>
-            </div>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               Discover innovation and excellence through our professional services and creative solutions
@@ -156,7 +211,7 @@ const Index = () => {
                     </h3>
                     <div className="space-y-3 text-gray-700">
                       <p className="flex items-center"><strong className="text-navy w-24">Time:</strong> <span className="text-brand-primary font-mono">{currentTime}</span></p>
-                      <p className="flex items-center"><strong className="text-navy w-24">Name:</strong> Harfi Novan</p>
+                      <p className="flex items-center"><strong className="text-navy w-24">Name:</strong> {displayName}</p>
                       <p className="flex items-center"><strong className="text-navy w-24">Born:</strong> 01/11/1995</p>
                       <p className="flex items-center"><strong className="text-navy w-24">Gender:</strong> Male</p>
                       <p className="flex items-start"><strong className="text-navy w-24">Goal:</strong> <span className="italic">Learning to create a website</span></p>
